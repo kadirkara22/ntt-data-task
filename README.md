@@ -6,4 +6,4 @@
 4.  Redux
 5.  Material UI
 
-## bestinsuranceoffer.netlify.app
+## https://bestinsuranceoffer.netlify.app/
