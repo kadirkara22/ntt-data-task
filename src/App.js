@@ -3,7 +3,9 @@ import './assets/css/styles.css'
 import CaseOne from './components/CaseOne.js';
 import CaseTwo from './components/CaseTwo.js';
 import CaseThree from './components/CaseThree.js';
+
 function App() {
+
   return (
     <div className="App">
       <nav>

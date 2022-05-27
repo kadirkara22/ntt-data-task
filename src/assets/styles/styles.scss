@@ -17,7 +17,11 @@
 .container {
   width: 60%;
   margin: auto;
-
+  .OfferInfo {
+    color: red;
+    font-weight: bold;
+    margin: 10px;
+  }
   .card {
     height: 120px;
     margin-bottom: 12px;
@@ -133,11 +137,17 @@
           color: white;
           font-weight: bold;
           border: none;
+          cursor: pointer;
           border-radius: 3px;
           -webkit-border-radius: 3px;
           -moz-border-radius: 3px;
           -ms-border-radius: 3px;
           -o-border-radius: 3px;
+        }
+        &-click:hover {
+          background-color: white;
+          color: rgb(68, 68, 240);
+          border: 1px solid rgb(68, 68, 240);
         }
       }
     }

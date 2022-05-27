@@ -27,6 +27,12 @@
   margin: auto;
 }
 
+.container .OfferInfo {
+  color: red;
+  font-weight: bold;
+  margin: 10px;
+}
+
 .container .card {
   height: 120px;
   margin-bottom: 12px;
@@ -190,11 +196,18 @@
   color: white;
   font-weight: bold;
   border: none;
+  cursor: pointer;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
+}
+
+.container .card-right-button-click:hover {
+  background-color: white;
+  color: #4444f0;
+  border: 1px solid #4444f0;
 }
 
 @media screen and (max-width: 900px) {

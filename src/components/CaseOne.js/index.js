@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from "axios"
+import { useDispatch, useSelector } from 'react-redux';
+import { getOffersOne } from '../../redux/insurancesSlice';
 const CaseOne = () => {
-    const [offerList, setOfferList] = useState([]);
+
+    const offerList = useSelector(state => state.insurances.offersCaseOne)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get('https://snetmyapp.herokuapp.com/case1')
-            .then(response => setOfferList(response.data.offerList))
+            .then(response => dispatch(getOffersOne(response.data.offerList)))
 
     }, [])
 

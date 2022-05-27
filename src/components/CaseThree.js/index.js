@@ -1,54 +1,64 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from "axios"
 import Loading from '../Loading';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCount, getOffersThree, getSortOffers } from '../../redux/insurancesSlice';
 const CaseThree = () => {
-    const [offerList, setOfferList] = useState([]);
-    const [offerCount, setOfferCount] = useState();
+    const offerList = useSelector(state => state.insurances.offersCaseThree)
+    const sortOfferList = useSelector(state => state.insurances.sortOffers)
+    const offerCount = useSelector(state => state.insurances.offerCount)
 
+    const dispatch = useDispatch();
 
-
+    /* provide count insurance offers */
     useEffect(() => {
         axios.get('https://snetmyapp.herokuapp.com/get_offer_count')
-            .then(res => setOfferCount(res.data.num_offers))
-            .catch(err => { console.log(err) })
-        fetchData()
+            .then((responses) => dispatch(getCount(responses.data.num_offers)))
+            .catch((err) => console.log(err))
     }, [])
-    let allOfferRequest = []
+
+    useEffect(() => {
+        fetchData()
+    }, [offerCount])
+
+    /* offers are sorted by price in ascending order  */
+
+    useEffect(() => {
+        dispatch(getSortOffers())
+    }, [offerList])
+
+    /* N times to fetch individual offers */
     const fetchData = async () => {
-
         const offerURL = 'https://snetmyapp.herokuapp.com/case3';
+
         for (let i = 0; i < offerCount; i++) {
-            const response = await axios.get(offerURL);
-            setOfferList(response.data)
-            console.log(offerList)
+            const response = await axios.get(offerURL)
+            dispatch(getOffersThree(response.data))
         }
-
-        //setOfferList(allOfferRequest)
-        console.log(allOfferRequest)
-
-
     }
+
+
+    /* spinner while waiting for response */
 
     if (offerList.length === 0) {
         return (
-            <>
+            <div className="container">
                 {
-                    offerCount && <div>{`Sizin için ${offerCount} tane sigorta teklifleri sağlayabiliyoruz`}</div>
+                    offerCount && <div className="OfferInfo">{`Sizin için ${offerCount} tane sigorta teklifleri sağlayabiliyoruz.Lütfen bekleyiniz.`}</div>
                 }
 
                 <Loading />
-            </>
+            </div>
         )
     }
 
-    console.log(offerList)
-
-
     return (
         <div className="container">
-
             {
-                offerList.length > 0 && offerList.map((offer, index) => (
+                offerCount && <div className="OfferInfo">{`Sizin için ${offerCount} tane sigorta teklifleri sağlayabiliyoruz.Lütfen bekleyiniz.`}</div>
+            }
+            {
+                sortOfferList.length > 0 && sortOfferList.map((offer, index) => (
 
                     <div className="card" key={index}>
                         <div className="card-left">
