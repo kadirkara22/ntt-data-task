@@ -22,6 +22,11 @@
     font-weight: bold;
     margin: 10px;
   }
+  @media screen and (max-width: 896px) {
+    .OfferInfo {
+      font-size: 12px;
+    }
+  }
   .card {
     height: 120px;
     margin-bottom: 12px;

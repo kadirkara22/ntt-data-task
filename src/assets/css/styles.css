@@ -33,6 +33,12 @@
   margin: 10px;
 }
 
+@media screen and (max-width: 896px) {
+  .container .OfferInfo {
+    font-size: 12px;
+  }
+}
+
 .container .card {
   height: 120px;
   margin-bottom: 12px;
